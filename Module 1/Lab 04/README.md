@@ -36,18 +36,14 @@ Q(next) = (J & Q̅) + (K̅ & Q)
 
 # Block Diagram
 
-<p align="center">
-<img src="./Images/block_diagram.png" width="350">
-</p>
+![Block Diagram](./Images/block_diagram.png)
 
 
 ---
 
 # Truth Table
 
-<p align="center">
-<img src="./Images/truth_table.png" width="700">
-</p>
+![Truth Table](./Images/truth_table.png)
 
 ---
 
@@ -149,9 +145,7 @@ gtkwave obj_dir/jk_ff_async.vcd
 
 # Terminal Output
 
-<p align="center">
-<img src="./Images/terminal_output.png" width="750">
-</p>
+![Terminal Output](./Images/terminal_output.png)
 
 The terminal output verifies all operating modes of the JK Flip-Flop. The simulation demonstrates correct behavior during preset, hold, reset, set, and toggle operations.
 
@@ -159,9 +153,7 @@ The terminal output verifies all operating modes of the JK Flip-Flop. The simula
 
 # Waveform Output
 
-<p align="center">
-<img src="./Images/waveform.png" width="750">
-</p>
+![Waveform](./Images/waveform.png)
 
 The GTKWave timing diagram confirms that:
 
