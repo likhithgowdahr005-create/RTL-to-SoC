@@ -96,7 +96,7 @@ The testbench verifies all possible input combinations:
 
 The project was simulated using **Verilator**.
 
-Example compilation command:
+Compilation command:
 
 ```bash
 verilator --binary -j 0 -Wall and_gate_design.v and_gate_tb.v \
