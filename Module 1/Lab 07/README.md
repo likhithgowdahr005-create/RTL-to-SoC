@@ -27,7 +27,7 @@ After reaching **1111**, the counter wraps around to **0000** and repeats the co
 # Truth Table
 
 <p align="center">
-<img src="./Images/truth_table.png" width="700">
+<img src="./Images/truth_table.png" width="700"> 
 </p>
 
 ---
