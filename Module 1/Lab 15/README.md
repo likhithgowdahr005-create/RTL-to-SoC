@@ -1,166 +1,174 @@
-# Lab 15 – Implementation of Simple Timer IP
+# Lab 01 – 2-Input AND Gate
 
 ## Aim
 
-To design, implement, and verify a parameterized **Simple Timer IP** using Verilog HDL. The timer is simulated using Verilator and analyzed using GTKWave to understand countdown operation, timer control, and completion signaling.
+To design, simulate, and verify a 2-input AND gate using Verilog HDL using Verilator and analyze the waveform using GTKWave.
 
 ---
 
-## Theory
+# Theory
 
-A Timer IP (Intellectual Property) is one of the most commonly used hardware blocks in digital systems. It provides accurate timing control for applications such as task scheduling, watchdog timers, communication protocols, and embedded systems.
+An AND gate is a fundamental combinational logic gate that performs the logical AND operation. The output is HIGH (1) only when both input signals are HIGH (1). If any one of the inputs is LOW (0), the output remains LOW (0).
 
-The implemented timer operates as a programmable countdown timer. When the **start** signal is asserted, the timer loads a preset value and decrements the counter on every rising edge of the clock. Once the counter reaches zero, the timer stops and asserts the **done** signal, indicating successful completion of the countdown.
+### Boolean Expression
 
-The design is parameterized, allowing the counter width to be modified for different timing requirements.
+```
+Y = A & B
+```
 
 ---
 
-## Block Diagram
+# Block Diagram
 
 <p align="center">
-<img src="Images/block_diagram.png" width="650">
+<img src="Images/block_diagram.png" width="350">
 </p>
 
 ---
 
-## Applications
+# Truth Table
 
-- Embedded Systems
-- FPGA Design
-- ASIC Design
-- Real-Time Operating Systems (RTOS)
-- Communication Protocol Timeouts
-- Watchdog Timers
-- PWM Controllers
-- Event Scheduling
-- Delay Generation
+<p align="center">
+<img src="Images/truth_table.png" width="450">
+</p>
 
 ---
 
-## Project Structure
+# Project Structure
 
 ```text
-Lab 15
+Lab 01
 │
 ├── Images
 │   ├── block_diagram.png
+│   ├── truth_table.png
+│   ├── terminal_output.png
 │   └── waveform.png
 │
-├── Scripts
-│   └── run.sh
-│
 ├── Source_Code
-│   └── simple_timer.v
+│   └── and_gate_design.v
 │
 ├── Testbench
-│   └── simple_timer_tb.v
+│   └── and_gate_tb.v
 │
 ├── Waveforms
-│   └── simple_timer.vcd
+│   └── and_gate_dump.vcd
 │
 └── README.md
 ```
 
 ---
 
-## RTL Design
+# RTL Design File
 
-The Timer IP consists of the following functional blocks:
+The Verilog HDL design is available in:
 
-- **Counter Register**
-  - Stores the current countdown value.
+```
+Source_Code/and_gate_design.v
+```
 
-- **Load Value Register**
-  - Holds the initial countdown value.
-
-- **Running Flag**
-  - Indicates whether the timer is currently active.
-
-- **Start Control**
-  - Loads the preset value and begins the countdown.
-
-- **Done Signal**
-  - Becomes high after the counter reaches zero.
-
-The timer loads the programmed value when the **start** signal is asserted and decrements the counter on every clock cycle until completion.
+The module implements a 2-input AND gate using a continuous assignment statement.
 
 ---
 
-## Testbench
+# Testbench File
 
-The testbench performs the following operations:
+The corresponding testbench is available in:
 
-- Generates a 10 ns system clock.
-- Applies a synchronous reset.
-- Loads an initial timer value.
-- Starts the countdown timer.
-- Waits until the timer completes.
-- Starts another countdown using a different load value.
-- Dumps simulation data into **simple_timer.vcd**.
-- Verifies correct timer operation using GTKWave.
+```
+Testbench/and_gate_tb.v
+```
+
+The testbench verifies all possible input combinations of the AND gate.
+
+| A | B | Y |
+|:-:|:-:|:-:|
+|0|0|0|
+|0|1|0|
+|1|0|0|
+|1|1|1|
 
 ---
 
-## Running the Simulation
+# Simulation Procedure
 
-Execute the simulation using:
+## Compilation
 
 ```bash
-chmod +x Scripts/run.sh
-./Scripts/run.sh
+verilator --binary -j 0 -Wall and_gate_design.v and_gate_tb.v \
+--top and_gate_tb --timing --CFLAGS "-std=c++20" --trace
 ```
-
-The script automatically:
-
-- Compiles the RTL using Verilator
-- Builds the simulation executable
-- Executes the testbench
-- Generates **simple_timer.vcd**
-- Opens GTKWave
 
 ---
 
-## Waveform Output
+## Execution
+
+```bash
+./obj_dir/Vand_gate_tb
+```
+
+---
+
+## Waveform Generation
+
+Open the generated waveform using GTKWave.
+
+```bash
+gtkwave Waveforms/and_gate_dump.vcd
+```
+
+> If the VCD file is located inside `obj_dir`, use:
+
+```bash
+gtkwave obj_dir/and_gate_dump.vcd
+```
+
+---
+
+# Terminal Output
 
 <p align="center">
-<img src="Images/waveform.png" width="900">
+<img src="Images/terminal_output.png" width="750">
 </p>
 
-### Waveform Observation
-
-The waveform verifies the expected operation of the Timer IP.
-
-- The **rst** signal initializes the timer.
-- The **start** signal loads the preset value into the counter.
-- The **count** register decrements on every clock cycle.
-- The **running** signal remains high while the timer is active.
-- The **done** signal is asserted after the countdown reaches zero.
-- The timer successfully performs multiple countdown operations using different load values.
+The terminal output confirms the successful execution of the simulation and verifies all possible input combinations of the AND gate.
 
 ---
 
-## Generated Waveform File
+# Waveform Output
 
-```text
-Waveforms/simple_timer.vcd
+<p align="center">
+<img src="Images/waveform.png" width="750">
+</p>
+
+The waveform generated using GTKWave verifies the correct logical behavior of the AND gate. The output becomes HIGH only when both inputs are HIGH.
+
+---
+
+# Generated Waveform File
+
+The generated VCD waveform file is available in:
+
+```
+Waveforms/and_gate_dump.vcd
 ```
 
----
-
-## Applications
-
-- Digital Timing Control
-- Embedded Controllers
-- FPGA Designs
-- ASIC Development
-- Watchdog Timers
-- Communication Protocol Timing
-- PWM Generation
-- Real-Time Scheduling
+This waveform file can be opened using GTKWave for timing analysis.
 
 ---
 
-## Result
+# Applications
 
-The implementation and simulation of the **Simple Timer IP** were successfully completed using Verilog HDL. The generated waveform verified correct loading of the preset value, countdown operation, and assertion of the **done** signal upon timer completion. The design demonstrates the fundamental operation of a programmable timer IP and its practical use in FPGA, ASIC, and embedded system applications.
+- Digital Logic Design
+- Arithmetic Logic Units (ALUs)
+- Control Logic
+- Combinational Logic Circuits
+- FPGA Design
+- ASIC Design
+- Embedded Systems
+
+---
+
+# Result
+
+The 2-input AND gate was successfully designed using Verilog HDL, simulated using Verilator, and verified using GTKWave. The simulation results and waveform matched the expected truth table, confirming the correct functionality of the design.
