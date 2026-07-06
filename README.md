@@ -2,36 +2,33 @@
 
 <div align="center">
 
-### From Register Transfer Level (RTL) Design to System-on-Chip (SoC) Integration
+## From Register Transfer Level (RTL) Design to System-on-Chip (SoC) Integration
 
-A comprehensive collection of **Verilog HDL** experiments covering **RTL Design**, **Digital Logic**, **Verification**, **Clock Domain Crossing (CDC)**, **Reset Design**, **IP Development**, **SoC Integration**, and **RTL Synthesis** using open-source EDA tools.
-
-![GitHub](https://img.shields.io/badge/Language-Verilog-blue)
-![Simulation](https://img.shields.io/badge/Simulator-Verilator-success)
-![Waveforms](https://img.shields.io/badge/Waveforms-GTKWave-orange)
-![Synthesis](https://img.shields.io/badge/Synthesis-Yosys-red)
-![Technology](https://img.shields.io/badge/Technology-Sky130-lightgrey)
+A structured collection of **Verilog HDL** experiments documenting my hands-on learning and implementation of **RTL Design**, **Digital Verification**, **IP Development**, **SoC Integration**, and **ASIC Synthesis** using open-source EDA tools.
 
 </div>
 
 ---
 
-# Overview
+# About
 
-**RTL-to-SoC** is a structured learning repository documenting my hands-on practice and implementation of digital hardware design concepts during an RTL/SoC Design Internship.
+**RTL-to-SoC** is a personal learning repository created during my **RTL/SoC Design Internship**.
 
-The repository follows a **module-wise** approach, where each module contains multiple laboratory exercises covering the complete RTL design flow—from basic combinational circuits to System-on-Chip (SoC) integration and ASIC-oriented synthesis.
+The repository is organized **module-wise**, with each module containing multiple laboratory exercises. Every lab includes RTL implementation, verification, waveform analysis, synthesis (where applicable), and detailed documentation.
 
-Each laboratory includes:
+The objective of this repository is to strengthen my understanding of digital hardware design while building a well-documented portfolio of RTL projects.
 
-- RTL Design using Verilog HDL
-- Testbench Development
-- Functional Verification
-- GTKWave Waveform Analysis
-- Yosys RTL Synthesis (where applicable)
-- Block Diagrams
-- Truth Tables
-- Detailed Documentation
+---
+
+# Tools & Technologies
+
+- Verilog HDL
+- Verilator
+- GTKWave
+- Yosys
+- Sky130 Standard Cell Library
+- Graphviz
+- Ubuntu (WSL)
 
 ---
 
@@ -43,7 +40,6 @@ RTL-to-SoC
 ├── Module 1
 │   ├── Lab 01
 │   ├── Lab 02
-│   ├── Lab 03
 │   ├── ...
 │   ├── Lab 20
 │   └── README.md
@@ -61,27 +57,25 @@ RTL-to-SoC
 
 ---
 
-# Module Overview
+# Modules
 
-| Module | Description | Status |
-|----------|------------|--------|
+| Module | Topics | Status |
+|----------|--------|--------|
 | Module 1 | RTL Design, Verification and SoC Fundamentals | ✅ Completed |
-| Module 2 | Coming Soon | 🚧 |
-| Module 3 | Coming Soon | 🚧 |
-| Module 4 | Coming Soon | 🚧 |
-| Module 5 | Coming Soon | 🚧 |
+| Module 2 | Advanced RTL Design | 🚧 In Progress |
+| Module 3 | Coming Soon | ⏳ |
+| Module 4 | Coming Soon | ⏳ |
+| Module 5 | Coming Soon | ⏳ |
 
 ---
 
 # Module 1 Highlights
 
-Module 1 covers the fundamentals of digital hardware design using Verilog HDL.
-
-### Topics Covered
+Module 1 includes practical implementation and verification of:
 
 - Basic Logic Gates
-- Combinational Logic Design
-- Sequential Logic Design
+- Combinational Circuits
+- Sequential Circuits
 - JK Flip-Flop
 - Up Counter
 - Down Counter
@@ -91,9 +85,9 @@ Module 1 covers the fundamentals of digital hardware design using Verilog HDL.
 - APB Bus Interface
 - Metastability
 - Clock Domain Crossing (CDC)
-- Two-Stage Synchronizer
+- Two-Stage Synchronizers
 - Clock Gating
-- Reset Strategies
+- Reset Techniques
 - Timer IP Design
 - Mini SoC Integration
 - SoC Debugging
@@ -101,42 +95,24 @@ Module 1 covers the fundamentals of digital hardware design using Verilog HDL.
 
 ---
 
-# Tools Used
-
-| Tool | Purpose |
-|------|---------|
-| Verilog HDL | RTL Design |
-| Verilator | RTL Compilation & Simulation |
-| GTKWave | Waveform Analysis |
-| Yosys | RTL Synthesis |
-| Sky130 Standard Cell Library | Technology Mapping |
-| Graphviz | RTL Visualization |
-| Ubuntu (WSL) | Development Environment |
-
----
-
-# Skills Gained
+# Skills Covered
 
 - RTL Design
-- Verilog HDL Programming
-- Combinational Circuit Design
-- Sequential Circuit Design
+- Verilog HDL
+- Digital Logic Design
 - Testbench Development
 - Functional Verification
-- Waveform Analysis
-- UART Communication
+- GTKWave Waveform Analysis
+- UART Design
 - APB Bus Interface
 - Clock Domain Crossing (CDC)
-- Metastability Analysis
 - Reset Synchronization
 - Clock Gating
-- Timer IP Design
-- IP Integration
-- SoC Design
+- IP Design
+- SoC Integration
 - RTL Debugging
 - RTL Synthesis
 - Technology Mapping
-- Digital Hardware Design
 
 ---
 
@@ -165,48 +141,13 @@ RTL Synthesis (Yosys)
       │
       ▼
 Technology Mapping (Sky130)
-      │
-      ▼
-Gate-Level Netlist
 ```
 
 ---
 
-# Repository Goals
+# Repository Goal
 
-This repository aims to:
-
-- Practice RTL design using Verilog HDL.
-- Understand digital hardware design concepts.
-- Learn verification using Verilator.
-- Analyze timing using GTKWave.
-- Build reusable hardware IPs.
-- Explore SoC integration concepts.
-- Perform RTL synthesis using Yosys.
-- Develop a structured portfolio of digital design projects.
-
----
-
-# Future Work
-
-The upcoming modules will focus on:
-
-- Advanced RTL Design
-- FSM Design Techniques
-- Memory Design
-- Advanced Bus Protocols
-- Low-Power Design
-- ASIC Design Flow
-- Physical Design Fundamentals
-- Timing Analysis
-- Static Timing Analysis (STA)
-- OpenLane-Based ASIC Flow
-
----
-
-# Acknowledgements
-
-This repository documents the practical experiments completed as part of an RTL/SoC Design Internship and serves as a personal learning portfolio for digital hardware design.
+This repository serves as a structured record of my RTL and SoC design practice completed during my internship. It demonstrates the progression from fundamental Verilog design concepts to complete RTL verification, IP integration, and synthesis using industry-relevant open-source tools.
 
 ---
 
@@ -216,7 +157,7 @@ This repository documents the practical experiments completed as part of an RTL/
 
 Electronics and Communication Engineering (ECE)
 
-Passionate about:
+Interested in:
 
 - Digital VLSI Design
 - ASIC Design
@@ -229,4 +170,4 @@ Passionate about:
 
 # License
 
-This repository is intended for educational and learning purposes.
+This repository is maintained for educational and learning purposes.
