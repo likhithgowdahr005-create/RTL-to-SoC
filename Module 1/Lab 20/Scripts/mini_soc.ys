@@ -1,0 +1,27 @@
+#Yosys Script File
+read_verilog counter.v alu.v mux2x1.v mini_soc.v
+#(These commands read all the Verilog desgin files)
+
+hierarchy -check -top mini_soc
+#(This command checks the hierarchy of the desgin from the top with top-level module name as mini_soc)
+
+proc; opt; fsm; opt; memory; opt;
+#(This command performs the internal processes done by yosys tool as well as maps the FSMs and memory blocks if any are present in the desgin)
+
+techmap; opt;
+#(This command maps the desgin to the internal cell library)
+
+dfflibmap -liberty /home/vlsi/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+#(This command maps the flip-flops present in the design to the standard cell library)
+
+abc -liberty /home/vlsi/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+#(This command maps the logic of the desgin to the standard cell library)
+
+clean
+#(This command removes unused wires if any from the desgin)
+
+
+write_verilog -noattr -noexpr mini_soc_netlist.v
+#(This command writes the synthesized gate-level netlist in Verilog format with the name mini_soc_netlist.v)
+
+ 

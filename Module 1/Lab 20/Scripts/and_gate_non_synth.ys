@@ -1,0 +1,31 @@
+#Yosys Script File 
+
+read_verilog and_gate_non_synth.v
+(#This commnad reads the Verilog input file)
+
+hierarchy -check -top and_gate_non_synth
+#(This command checks the hierarchy of the design and sets and_gate_non_synth as the top module)
+
+proc; opt; fsm; opt; memory; opt
+#(This command performs the internal processes done by yosys tools as well as map the fsms,and memory block if any are present in the design)
+
+techmap; opt 
+#(This command maps the design to your internal cell library)
+
+dfflimb -liberty /home/vlsi/.ciel/ciel/sky130/versions/0fe5992afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+#(This command maps the flip-flops present in your design to your standard cell library)
+
+abc -liberty /home/vlsi/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+#(This command maps the logic of your design to your standard cell library)
+
+clean
+#(This command removes the unused wires if any from your design)
+
+show
+#(This command opens a pictorial representation of your desgin showing how many standard cells are used and how they are connected in your desgin)
+
+write_verilog and_gate_netlist_non_synth.v
+#(This command writes the synthesized gate level netlist in Verilog format with the name and_gate_netlist_non_synth.v)
+
+
+
