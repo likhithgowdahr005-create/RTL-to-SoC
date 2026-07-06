@@ -27,20 +27,6 @@ The top-level Mini-SoC demonstrates how multiple reusable IP blocks communicate 
 </p>
 
 ---
-
-# Applications
-
-- System-on-Chip (SoC) Design
-- FPGA Prototyping
-- ASIC Design
-- Embedded Systems
-- Digital Signal Processing
-- Processor Peripheral Integration
-- Hardware IP Reuse
-- Digital System Design Education
-
----
-
 # Project Structure
 
 ```text
