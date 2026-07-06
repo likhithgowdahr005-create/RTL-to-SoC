@@ -24,20 +24,6 @@ The timer is parameterized using the **WIDTH** parameter, making it reusable for
 
 ---
 
-# Applications
-
-- Embedded Systems
-- FPGA Design
-- ASIC Design
-- Real-Time Operating Systems (RTOS)
-- Communication Protocol Timeouts
-- Watchdog Timers
-- PWM Controllers
-- Delay Generation
-- Digital Timing Control
-
----
-
 # Project Structure
 
 ```text
