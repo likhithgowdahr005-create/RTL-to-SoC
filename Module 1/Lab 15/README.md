@@ -2,17 +2,17 @@
 
 ## Aim
 
-To design, simulate, and verify a parameterized **Simple Timer IP** using Verilog HDL with Verilator and analyze its timing behavior using GTKWave.
+To design, simulate, and verify a **Simple Timer IP** using Verilog HDL with Verilator and analyze its operation using GTKWave.
 
 ---
 
 # Theory
 
-A Timer IP (Intellectual Property) is a reusable digital hardware module that provides accurate timing and delay generation in digital systems. It is widely used in microcontrollers, System-on-Chip (SoC) designs, embedded systems, communication protocols, watchdog timers, and real-time operating systems.
+A Timer IP (Intellectual Property) is a reusable digital hardware module used to generate accurate timing and delay functions in digital systems. Timer IPs are widely used in microcontrollers, embedded systems, System-on-Chip (SoC) designs, communication protocols, watchdog timers, and real-time operating systems.
 
-The timer implemented in this lab is a **programmable countdown timer**. When the **start** signal is asserted, the timer loads a user-defined value into the counter and begins decrementing the count on every positive edge of the clock. Once the counter reaches zero, the timer stops automatically and asserts the **done** signal, indicating that the countdown has completed.
+The timer implemented in this lab is a **programmable countdown timer**. When the **start** signal is asserted, the timer loads a preset value into its internal counter and begins decrementing the counter on every rising edge of the system clock. Once the counter reaches zero, the timer stops automatically and asserts the **done** signal, indicating successful completion of the countdown operation.
 
-The design is parameterized using the **WIDTH** parameter, making it reusable for timers of different bit widths.
+The timer is parameterized using the **WIDTH** parameter, making it reusable for different counter sizes without modifying the RTL code.
 
 ---
 
@@ -21,6 +21,20 @@ The design is parameterized using the **WIDTH** parameter, making it reusable fo
 <p align="center">
 <img src="Images/block_diagram.png" width="500">
 </p>
+
+---
+
+# Applications
+
+- Embedded Systems
+- FPGA Design
+- ASIC Design
+- Real-Time Operating Systems (RTOS)
+- Communication Protocol Timeouts
+- Watchdog Timers
+- PWM Controllers
+- Delay Generation
+- Digital Timing Control
 
 ---
 
@@ -50,101 +64,73 @@ Lab 15
 
 ---
 
-# RTL Design File
+# RTL Design
 
-The Verilog HDL design is available in:
+The RTL design is available in:
 
 ```text
 Source_Code/simple_timer.v
 ```
 
-The design implements a parameterized countdown timer consisting of:
+The module implements a parameterized programmable countdown timer.
 
-- Counter Register
-- Load Value Register
-- Running Flag
-- Start Control Logic
-- Done Signal
+The design consists of:
 
-The timer loads the preset value when the **start** signal is asserted and decrements the counter on every rising edge of the clock. Once the counter reaches zero, the timer stops and asserts the **done** signal.
+- **Counter Register**
+  - Stores the current countdown value.
+
+- **Load Value Register**
+  - Loads the preset value whenever the **start** signal is asserted.
+
+- **Running Flag**
+  - Indicates whether the timer is currently active.
+
+- **Done Signal**
+  - Becomes HIGH when the countdown reaches zero.
+
+The timer begins counting after receiving the **start** signal and decrements the counter on every positive edge of the clock until completion.
 
 ---
 
-# Testbench File
+# Testbench
 
-The corresponding testbench is available in:
+The testbench is available in:
 
 ```text
 Testbench/simple_timer_tb.v
 ```
 
-The testbench performs the following operations:
+The testbench verifies the timer by performing the following operations:
 
-- Generates the system clock.
-- Applies synchronous reset.
-- Loads a countdown value of **5**.
-- Starts the timer.
+- Generates a periodic clock.
+- Applies reset.
+- Loads an initial timer value of **5**.
+- Starts the countdown operation.
 - Waits until completion.
-- Loads another countdown value of **3**.
+- Loads another timer value of **3**.
 - Starts the timer again.
-- Generates the waveform file for GTKWave analysis.
+- Dumps simulation data into **simple_timer.vcd**.
 
-This verifies multiple countdown operations within a single simulation.
+The testbench verifies multiple countdown operations within a single simulation.
 
 ---
 
-# Simulation Procedure
+# Running the Simulation
 
-## Compilation
-
-The project is compiled using the provided simulation script.
+Execute the simulation using:
 
 ```bash
 chmod +x Scripts/run.sh
 ./Scripts/run.sh
 ```
 
-The script automatically performs the following operations:
+The script automatically:
 
 - Compiles the RTL using Verilator.
 - Builds the simulation executable.
 - Executes the testbench.
-- Generates the waveform file.
+- Generates the VCD waveform.
 - Opens GTKWave.
-
----
-
-## Manual Compilation (Optional)
-
-```bash
-verilator --binary -j 0 -Wall simple_timer.v simple_timer_tb.v \
---top simple_timer_tb --timing \
---CFLAGS "-std=c++20 -fcoroutines" --trace
-```
-
----
-
-## Execution
-
-```bash
-./obj_dir/Vsimple_timer_tb
-```
-
----
-
-## Waveform Generation
-
-Open the generated waveform using GTKWave.
-
-```bash
-gtkwave Waveforms/simple_timer.vcd
-```
-
-> If the waveform is generated inside `obj_dir`, use:
-
-```bash
-gtkwave obj_dir/simple_timer.vcd
-```
 
 ---
 
@@ -154,20 +140,20 @@ gtkwave obj_dir/simple_timer.vcd
 <img src="Images/waveform.png" width="900">
 </p>
 
-The waveform confirms the correct functionality of the Simple Timer IP.
-
 ### Waveform Observation
 
-- The **clk** signal provides the timing reference for all operations.
-- The **rst** signal initializes the timer and clears internal registers.
-- The **load_val** input loads the preset countdown value.
-- The **start** signal begins the countdown operation.
-- The internal **count** register decrements on every positive edge of the clock.
-- The **running** signal remains HIGH while the timer is active.
-- Once the counter reaches zero, the **done** signal is asserted and the timer stops.
-- The timer successfully reloads and performs multiple countdown operations using different preset values.
+The GTKWave timing diagram verifies the correct operation of the Simple Timer IP.
 
-The waveform verifies correct timer initialization, countdown operation, and completion signaling.
+- The **clk** signal drives the timer operation.
+- The **rst** signal initializes all internal registers.
+- The **load_val** input loads the preset countdown value.
+- The **start** signal begins the countdown process.
+- The **count** register decrements on every rising edge of the clock.
+- The **running** signal remains HIGH while the timer is active.
+- The **done** signal is asserted after the countdown reaches zero.
+- The timer successfully performs multiple countdown operations using different preset values.
+
+The waveform confirms the expected functionality of the programmable countdown timer.
 
 ---
 
@@ -189,15 +175,13 @@ This waveform file can be opened using GTKWave for timing analysis and functiona
 - FPGA Design
 - ASIC Design
 - Real-Time Operating Systems (RTOS)
+- Communication Interfaces
 - Watchdog Timers
-- Communication Protocol Timeouts
 - PWM Controllers
-- Event Scheduling
-- Delay Generation
-- Timing Control in SoC Designs
+- Digital Timing Applications
 
 ---
 
 # Result
 
-The **Simple Timer IP** was successfully designed using Verilog HDL, simulated using Verilator, and verified using GTKWave. The simulation results confirmed correct loading of the preset value, countdown operation, assertion of the **done** signal upon timer completion, and successful execution of multiple timer cycles. The generated waveform matched the expected behavior, validating the functionality of the programmable countdown timer.
+The **Simple Timer IP** was successfully designed using Verilog HDL, simulated using Verilator, and verified using GTKWave. The simulation confirmed correct loading of programmable countdown values, proper countdown operation, assertion of the **done** signal upon completion, and successful restart of the timer with different load values. The generated waveform matched the expected functionality, validating the operation of the Timer IP.
