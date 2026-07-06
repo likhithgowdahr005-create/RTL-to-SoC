@@ -2,26 +2,43 @@
 
 ## Aim
 
-To design, implement, and verify a parameterized countdown Timer IP using Verilog HDL. The timer is simulated using Verilator and analyzed using GTKWave to understand its operation and timing behavior.
+To design, implement, and verify a parameterized **Simple Timer IP** using Verilog HDL. The timer is simulated using Verilator and analyzed using GTKWave to understand countdown operation, timer control, and completion signaling.
 
 ---
 
-# Theory
+## Theory
 
-A Timer IP (Intellectual Property) is a fundamental building block used in digital systems to generate delays, schedule tasks, monitor timeouts, and provide timing control. A countdown timer starts from a user-defined value and decrements on every clock cycle until it reaches zero, where it asserts a completion signal.
+A Timer IP (Intellectual Property) is one of the most commonly used hardware blocks in digital systems. It provides accurate timing control for applications such as task scheduling, watchdog timers, communication protocols, and embedded systems.
 
-The Timer IP implemented in this lab supports:
+The implemented timer operates as a programmable countdown timer. When the **start** signal is asserted, the timer loads a preset value and decrements the counter on every rising edge of the clock. Once the counter reaches zero, the timer stops and asserts the **done** signal, indicating successful completion of the countdown.
 
-- Programmable countdown value
-- Start control signal
-- Synchronous reset
-- Completion indication using a **done** signal
-
-This experiment introduces the basics of timer-based hardware design and IP development methodology.
+The design is parameterized, allowing the counter width to be modified for different timing requirements.
 
 ---
 
-# Folder Structure
+## Block Diagram
+
+<p align="center">
+<img src="Images/block_diagram.png" width="650">
+</p>
+
+---
+
+## Applications
+
+- Embedded Systems
+- FPGA Design
+- ASIC Design
+- Real-Time Operating Systems (RTOS)
+- Communication Protocol Timeouts
+- Watchdog Timers
+- PWM Controllers
+- Event Scheduling
+- Delay Generation
+
+---
+
+## Project Structure
 
 ```text
 Lab 15
@@ -47,91 +64,103 @@ Lab 15
 
 ---
 
-# Block Diagram
+## RTL Design
 
-<p align="center">
-<img src="Images/block_diagram.png" width="650">
-</p>
+The Timer IP consists of the following functional blocks:
 
----
+- **Counter Register**
+  - Stores the current countdown value.
 
-# Design Description
+- **Load Value Register**
+  - Holds the initial countdown value.
 
-The Timer IP is implemented as a parameterized countdown timer.
+- **Running Flag**
+  - Indicates whether the timer is currently active.
 
-The design consists of:
+- **Start Control**
+  - Loads the preset value and begins the countdown.
 
-- **Clock Input (clk)** – Drives the timer operation.
-- **Reset (rst)** – Initializes all internal registers.
-- **Start Signal (start)** – Loads the timer and begins counting.
-- **Load Value (load_val)** – Defines the initial countdown value.
-- **Counter Register** – Stores the current timer count.
-- **Running Flag** – Indicates whether the timer is active.
-- **Done Signal** – Becomes high when the timer reaches zero.
+- **Done Signal**
+  - Becomes high after the counter reaches zero.
 
-The timer loads the programmed value when the **start** signal is asserted. Once started, the counter decrements on every clock cycle until it reaches zero, after which the timer stops and asserts the **done** signal.
+The timer loads the programmed value when the **start** signal is asserted and decrements the counter on every clock cycle until completion.
 
 ---
 
-# Output Waveform
+## Testbench
+
+The testbench performs the following operations:
+
+- Generates a 10 ns system clock.
+- Applies a synchronous reset.
+- Loads an initial timer value.
+- Starts the countdown timer.
+- Waits until the timer completes.
+- Starts another countdown using a different load value.
+- Dumps simulation data into **simple_timer.vcd**.
+- Verifies correct timer operation using GTKWave.
+
+---
+
+## Running the Simulation
+
+Execute the simulation using:
+
+```bash
+chmod +x Scripts/run.sh
+./Scripts/run.sh
+```
+
+The script automatically:
+
+- Compiles the RTL using Verilator
+- Builds the simulation executable
+- Executes the testbench
+- Generates **simple_timer.vcd**
+- Opens GTKWave
+
+---
+
+## Waveform Output
 
 <p align="center">
 <img src="Images/waveform.png" width="900">
 </p>
 
----
+### Waveform Observation
 
-# Waveform Observation
+The waveform verifies the expected operation of the Timer IP.
 
-The waveform verifies the correct functionality of the Timer IP.
-
-- Reset initializes the timer.
-- The **start** signal loads the preset value.
-- The counter decrements on each rising edge of the clock.
-- The **running** signal remains high while counting.
-- The **done** signal is asserted once the counter reaches zero.
-- The timer successfully performs multiple countdown operations with different load values.
+- The **rst** signal initializes the timer.
+- The **start** signal loads the preset value into the counter.
+- The **count** register decrements on every clock cycle.
+- The **running** signal remains high while the timer is active.
+- The **done** signal is asserted after the countdown reaches zero.
+- The timer successfully performs multiple countdown operations using different load values.
 
 ---
 
-# Tools Used
+## Generated Waveform File
 
-- Verilog HDL
-- Verilator
-- GTKWave
-- GVim
-- Ubuntu (WSL)
+```text
+Waveforms/simple_timer.vcd
+```
 
 ---
 
-# Applications
+## Applications
 
-- Embedded Systems
-- FPGA Design
-- ASIC Design
-- Real-Time Operating Systems (RTOS)
+- Digital Timing Control
+- Embedded Controllers
+- FPGA Designs
+- ASIC Development
 - Watchdog Timers
-- Communication Protocol Timeouts
-- PWM Controllers
-- Delay Generation
-- Event Scheduling
-- System Timing Control
+- Communication Protocol Timing
+- PWM Generation
+- Real-Time Scheduling
 
 ---
 
-# Learning Outcomes
+## Result
 
-After completing this lab, you will be able to:
-
-- Design a parameterized Timer IP using Verilog HDL.
-- Implement countdown timer logic using sequential circuits.
-- Understand timer control using start and reset signals.
-- Simulate RTL designs using Verilator.
-- Analyze timer behavior using GTKWave.
-- Understand the role of Timer IPs in embedded and SoC designs.
-
----
-
-# Result
-
-Successfully designed and implemented a parameterized Simple Timer IP using Verilog HDL. The simulation results verified correct timer initialization, countdown operation, and assertion of the **done** signal upon completion. GTKWave analysis confirmed the expected behavior of the Timer IP, demonstrating its suitability for timing control applications in FPGA, ASIC, and embedded system designs.
+The implementation and simulation of the **Simple Timer IP** were successfully completed using Verilog HDL. The generated waveform verified correct loading of the preset value, countdown operation, and assertion of the **done** signal upon timer completion. The design demonstrates the fundamental operation of a programmable timer IP and its practical use in FPGA, ASIC, and embedded system applications.
