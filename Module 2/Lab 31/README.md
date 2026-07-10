@@ -14,9 +14,7 @@ An optimized RTL design minimizes switching activity by updating registers and o
 
 The relationship between dynamic power and switching activity is given by:
 
-\[
-P_{dynamic}= \alpha C V^2 f
-\]
+**Pdynamic = α × C × V² × f**
 
 Where:
 
