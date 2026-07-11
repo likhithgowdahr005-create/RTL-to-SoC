@@ -1,12 +1,8 @@
 # RTL-to-SoC
 
-<div align="center">
-
 ## From Register Transfer Level (RTL) Design to System-on-Chip (SoC) Integration
 
-A structured collection of **Verilog HDL** experiments documenting my hands-on learning and implementation of **RTL Design**, **Digital Verification**, **IP Development**, **SoC Integration**, and **ASIC Synthesis** using open-source EDA tools.
-
-</div>
+A structured collection of **Verilog HDL** experiments documenting my hands-on learning and implementation of **RTL Design, Functional Verification, Clock Domain Crossing (CDC), Low-Power Design, IP Development, SoC Integration, and ASIC Synthesis** using open-source EDA tools.
 
 ---
 
@@ -14,9 +10,18 @@ A structured collection of **Verilog HDL** experiments documenting my hands-on l
 
 **RTL-to-SoC** is a personal learning repository created during my **RTL/SoC Design Internship**.
 
-The repository is organized **module-wise**, with each module containing multiple laboratory exercises. Every lab includes RTL implementation, verification, waveform analysis, synthesis (where applicable), and detailed documentation.
+The repository is organized **module-wise**, with each module containing multiple laboratory exercises. Every lab includes:
 
-The objective of this repository is to strengthen my understanding of digital hardware design while building a well-documented portfolio of RTL projects.
+- RTL Design using Verilog HDL
+- Testbench Development
+- Functional Verification
+- Waveform Analysis using GTKWave
+- RTL Synthesis (where applicable)
+- Detailed Documentation
+- Block Diagrams
+- Project Structure
+
+The objective of this repository is to strengthen my understanding of digital hardware design while building a well-documented portfolio of FPGA and ASIC-oriented RTL projects.
 
 ---
 
@@ -39,12 +44,15 @@ RTL-to-SoC
 │
 ├── Module 1
 │   ├── Lab 01
-│   ├── Lab 02
 │   ├── ...
 │   ├── Lab 20
 │   └── README.md
 │
 ├── Module 2
+│   ├── Lab 21
+│   ├── ...
+│   ├── Lab 32
+│   └── README.md
 │
 ├── Module 3
 │
@@ -60,9 +68,9 @@ RTL-to-SoC
 # Modules
 
 | Module | Topics | Status |
-|----------|--------|--------|
+|---------|--------|--------|
 | Module 1 | RTL Design, Verification and SoC Fundamentals | ✅ Completed |
-| Module 2 | Advanced RTL Design | 🚧 In Progress |
+| Module 2 | Clock Domain Crossing (CDC), Low-Power RTL Design and Advanced SoC Concepts | ✅ Completed |
 | Module 3 | Coming Soon | ⏳ |
 | Module 4 | Coming Soon | ⏳ |
 | Module 5 | Coming Soon | ⏳ |
@@ -95,6 +103,27 @@ Module 1 includes practical implementation and verification of:
 
 ---
 
+# Module 2 Highlights
+
+Module 2 focuses on advanced RTL design concepts including:
+
+- Multi-Stage Synchronizers
+- Clock Domain Crossing (CDC)
+- Asynchronous FIFO Design
+- Multi-Clock Domain Architectures
+- Clock Multiplexers
+- Clock Dividers
+- Clock Gating Techniques
+- Power Gating
+- Low-Power RTL Coding
+- Hierarchical RTL Design
+- IP Reuse Strategies
+- Reset Synchronization
+- Reset Stretching
+- Multi-Clock Domain Subsystems
+
+---
+
 # Skills Covered
 
 - RTL Design
@@ -106,9 +135,17 @@ Module 1 includes practical implementation and verification of:
 - UART Design
 - APB Bus Interface
 - Clock Domain Crossing (CDC)
-- Reset Synchronization
+- Multi-Clock Domain Design
+- Asynchronous FIFO Design
+- Synchronizer Design
 - Clock Gating
-- IP Design
+- Power Gating
+- Low-Power RTL Design
+- Reset Synchronization
+- Reset Stretching
+- Hierarchical RTL Design
+- IP Reuse
+- IP Development
 - SoC Integration
 - RTL Debugging
 - RTL Synthesis
@@ -147,7 +184,7 @@ Technology Mapping (Sky130)
 
 # Repository Goal
 
-This repository serves as a structured record of my RTL and SoC design practice completed during my internship. It demonstrates the progression from fundamental Verilog design concepts to complete RTL verification, IP integration, and synthesis using industry-relevant open-source tools.
+This repository serves as a structured record of my RTL and SoC design journey completed during my internship. It demonstrates the progression from fundamental Verilog HDL concepts to advanced topics such as **Clock Domain Crossing (CDC), Low-Power RTL Design, Asynchronous FIFO implementation, Hierarchical Design, IP Reuse, Multi-Clock Domain Systems, SoC Integration, and RTL synthesis** using industry-standard open-source EDA tools.
 
 ---
 
@@ -157,13 +194,14 @@ This repository serves as a structured record of my RTL and SoC design practice 
 
 Electronics and Communication Engineering (ECE)
 
-Interested in:
+### Interested in
 
 - Digital VLSI Design
+- RTL Design
 - ASIC Design
 - FPGA Design
-- RTL Design
-- SoC Design
+- Physical Design
+- System-on-Chip (SoC) Design
 - Embedded Systems
 
 ---
